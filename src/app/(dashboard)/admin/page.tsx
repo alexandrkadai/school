@@ -1,4 +1,8 @@
+import Anonuncments from '@/components/Anonuncments';
+import AttendanceChart from '@/components/AttendanceChart';
 import CircleChart from '@/components/CircleChart';
+import EventCalendar from '@/components/EventCalendar';
+import FinanceChart from '@/components/FinanceChart';
 import UserCard from '@/components/UserCard';
 import React from 'react';
 
@@ -20,11 +24,18 @@ const AdminPage = () => {
         <CircleChart />
         </div>
 
-        <div className="w-full lg:w-2/3 h-[450px] "></div>
+        <div className="w-full lg:w-2/3 h-[450px] ">
+        <AttendanceChart />
+        </div>
+
       </div>
+      <FinanceChart/>
+
       </div>
 
-      <div className="w-full lg:w-1/3">
+      <div className="w-full lg:w-1/3 flex flex-col gap-8">
+      <EventCalendar />
+      <Anonuncments />
       </div>
     </div>
   );
