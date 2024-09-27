@@ -1060,4 +1060,34 @@ export const calendarEvents = [
     start: new Date(2024, 7, 16, 14, 0),
     end: new Date(2024, 7, 16, 14, 45),
   },
+  {
+    title: "Physical Education",
+    allDay: false,
+    start: new Date(2024, 8, 27, 12, 30),
+    end: new Date(2024, 8, 27, 13, 15),
+  },
+  {
+    title: "Physics",
+    allDay: false,
+    start: new Date(2024, 8, 27, 13, 30),
+    end: new Date(2024, 8, 27, 14, 15),
+  },
+  {
+    title: "History",
+    allDay: false,
+    start: new Date(2024, 8, 27, 9, 15),
+    end: new Date(2024, 8, 27, 10, 0),
+  },
+  {
+    title: "Geography",
+    allDay: false,
+    start: new Date(2024, 8, 28, 14, 0),
+    end: new Date(2024, 8, 28, 14, 45),
+  },
+  {
+    title: "English",
+    allDay: false,
+    start: new Date(2024, 8, 28, 10, 45),
+    end: new Date(2024, 8, 28, 11, 30),
+  },
 ];
