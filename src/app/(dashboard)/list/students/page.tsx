@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Pagination from '@/components/Pagination';
 import Table from '@/components/Table';
 import Link from 'next/link';
-import { role, teachersData } from '@/lib/data';
+import { role, studentsData } from '@/lib/data';
 
 type Teacher = {
   id: number;
@@ -54,7 +54,7 @@ const columns = [
   },
 ];
 
-const TeachersList = () => {
+const StudentsList = () => {
   const renderRow = (item: Teacher) => (
     <tr key={item.id} className='border-b border-gray-200 even:bg-blue-100 text-sm hover:bg-purple-100'>
       <td className='flex items-center gap-4 p-4'>
@@ -93,7 +93,7 @@ const TeachersList = () => {
     <div className="bg-white p-4 rounded-xl flex-1 m-4 mt-0">
       {/* First */}
       <div className="flex items-center justify-between">
-        <h1 className="hidden md:block text-lg font-semibold text-center">All Teachers</h1>
+        <h1 className="hidden md:block text-lg font-semibold text-center">All Students</h1>
 
         <div className="flex flex-col md:flex-row items-center w-full md:w-auto gap-4 mt-4">
           <TableSearch />
@@ -114,11 +114,11 @@ const TeachersList = () => {
       </div>
 
       {/* Table*/}
-      <Table columns={columns} renderRow={renderRow} data={teachersData}/>
+      <Table columns={columns} renderRow={renderRow} data={studentsData}/>
 
       <Pagination />
     </div>
   );
 };
 
-export default TeachersList;
+export default StudentsList;
