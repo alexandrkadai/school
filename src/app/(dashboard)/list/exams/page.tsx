@@ -4,48 +4,36 @@ import Image from 'next/image';
 import Pagination from '@/components/Pagination';
 import Table from '@/components/Table';
 import Link from 'next/link';
-import { role, teachersData } from '@/lib/data';
+import { role, examsData } from '@/lib/data';
 
-type Teacher = {
+
+type Exam = {
   id: number;
-  teacherId: string;
-  name: string;
-  email?: string;
-  photo: string;
-  phone: string;
-  subjects: string[];
-  classes: string[];
-  address: string;
+  subject: string;
+  class: number;
+  teacher: string;
+  date: string;
 };
 
 const columns = [
   {
-    header: 'Info',
-    accessor: 'info',
+    header: 'Subject',
+    accessor: 'subject',
+  },
+ 
+  {
+    header: 'Class',
+    accessor: 'class',
+    
   },
   {
-    header: 'Teacher ID',
-    accessor: 'teacherId',
-    className: 'hidden md:table-cell',
-  },
-  {
-    header: 'Subjects',
-    accessor: 'subjects',
-    className: 'hidden md:table-cell',
-  },
-  {
-    header: 'Classes',
-    accessor: 'classes',
-    className: 'hidden md:table-cell',
-  },
-  {
-    header: 'Phone',
-    accessor: 'phone',
+    header: 'Teacher',
+    accessor: 'teacher',
     className: 'hidden lg:table-cell',
   },
   {
-    header: 'Address',
-    accessor: 'address',
+    header: 'Date',
+    accessor: 'date',
     className: 'hidden lg:table-cell',
   },
   {
@@ -54,46 +42,47 @@ const columns = [
   },
 ];
 
-const TeachersList = () => {
-  const renderRow = (item: Teacher) => (
-    <tr key={item.id} className='border-b border-gray-200 even:bg-blue-100 text-sm hover:bg-purple-100'>
-      <td className='flex items-center gap-4 p-4'>
-        <Image
+const ExamsList = () => {
+  const renderRow = (item: Exam) => (
+    <tr
+      key={item.id}
+      className="border-b border-gray-200 even:bg-blue-100 text-sm hover:bg-purple-100">
+      <td className="flex items-center gap-4 p-4">
+        {/* <Image
           src={item.photo}
           width={40}
           height={40}
           alt="Teacher Photo"
           className="md:hidden xl:block w-10 h-10 rounded-full object-cover"
-        />
+        /> */}
         <div className="flex flex-col ">
-          <h3 className="font-semibold text-gray-500 ">{item.name}</h3>
-          <span className="text-xs text-gray-500 ">{item?.email}</span>
+          <h3 className="font-semibold text-gray-500 ">{item.subject}</h3>
         </div>
       </td>
-      <td className="hidden md:table-cell ">{item.teacherId}</td>
-      <td className="hidden md:table-cell ">{item.subjects.join(',')}</td>
-      <td className="hidden md:table-cell ">{item.classes.join(',')}</td>
-      <td className="hidden md:table-cell ">{item.phone}</td>
-      <td className="hidden md:table-cell ">{item.address}</td>
+      <td className="hidden md:table-cell ">{item.class}</td>
+      <td className="hidden md:table-cell ">{item.teacher}</td>
+      <td className="hidden md:table-cell ">{item.date}</td>
       <td>
         <div className="flex items-center gap-2">
           <Link href={`/ist/teachers/${item.id}`} />
           <button className="w-7 h-7 flex items-center justify-center rounded-full bg-sky">
-            <Image src="/view.png" width={16} height={16} alt="viewprofile" />
+            <Image src="/edit.png" width={16} height={16} alt="editlesson" />
           </button>
-          {role==='admin' && <button className="w-7 h-7 flex items-center justify-center rounded-full bg-purple-400">
-            <Image src="/delete.png" width={16} height={16} alt="viewprofile" />
-          </button>}
+          {role === 'admin' && (
+            <button className="w-7 h-7 flex items-center justify-center rounded-full bg-purple-400">
+              <Image src="/delete.png" width={16} height={16} alt="viewprofile" />
+            </button>
+          )}
         </div>
       </td>
-    </tr>);
-  
+    </tr>
+  );
 
   return (
     <div className="bg-white p-4 rounded-xl flex-1 m-4 mt-0">
       {/* First */}
       <div className="flex items-center justify-between">
-        <h1 className="hidden md:block text-lg font-semibold text-center">All Teachers</h1>
+        <h1 className="hidden md:block text-lg font-semibold text-center">All Exams</h1>
 
         <div className="flex flex-col md:flex-row items-center w-full md:w-auto gap-4 mt-4">
           <TableSearch />
@@ -116,11 +105,11 @@ const TeachersList = () => {
       </div>
 
       {/* Table*/}
-      <Table columns={columns} renderRow={renderRow} data={teachersData} />
+      <Table columns={columns} renderRow={renderRow} data={examsData} />
 
       <Pagination />
     </div>
   );
 };
 
-export default TeachersList;
+export default ExamsList;

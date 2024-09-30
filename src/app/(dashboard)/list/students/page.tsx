@@ -6,15 +6,15 @@ import Table from '@/components/Table';
 import Link from 'next/link';
 import { role, studentsData } from '@/lib/data';
 
-type Teacher = {
+type Student = {
   id: number;
-  teacherId: string;
+  studentId: string;
   name: string;
   email?: string;
   photo: string;
-  phone: string;
-  subjects: string[];
-  classes: string[];
+  phone?: string;
+  grade: number;
+  class: string;
   address: string;
 };
 
@@ -24,20 +24,11 @@ const columns = [
     accessor: 'info',
   },
   {
-    header: 'Teacher ID',
-    accessor: 'teacherId',
+    header: 'Student ID',
+    accessor: 'studentID',
     className: 'hidden md:table-cell',
   },
-  {
-    header: 'Subjects',
-    accessor: 'subjects',
-    className: 'hidden md:table-cell',
-  },
-  {
-    header: 'Classes',
-    accessor: 'classes',
-    className: 'hidden md:table-cell',
-  },
+  
   {
     header: 'Phone',
     accessor: 'phone',
@@ -55,9 +46,11 @@ const columns = [
 ];
 
 const StudentsList = () => {
-  const renderRow = (item: Teacher) => (
-    <tr key={item.id} className='border-b border-gray-200 even:bg-blue-100 text-sm hover:bg-purple-100'>
-      <td className='flex items-center gap-4 p-4'>
+  const renderRow = (item: Student) => (
+    <tr
+      key={item.id}
+      className="border-b border-gray-200 even:bg-blue-100 text-sm hover:bg-purple-100">
+      <td className="flex items-center gap-4 p-4">
         <Image
           src={item.photo}
           width={40}
@@ -67,12 +60,11 @@ const StudentsList = () => {
         />
         <div className="flex flex-col ">
           <h3 className="font-semibold text-gray-500 ">{item.name}</h3>
-          <span className="text-xs text-gray-500 ">{item?.email}</span>
+          <span className="text-xs text-gray-500 ">{item.class}</span>
         </div>
       </td>
-      <td className="hidden md:table-cell ">{item.teacherId}</td>
-      <td className="hidden md:table-cell ">{item.subjects.join(',')}</td>
-      <td className="hidden md:table-cell ">{item.classes.join(',')}</td>
+      <td className="hidden md:table-cell ">{item.studentId}</td>
+      <td className="hidden md:table-cell ">{item.grade}</td>
       <td className="hidden md:table-cell ">{item.phone}</td>
       <td className="hidden md:table-cell ">{item.address}</td>
       <td>
@@ -81,13 +73,15 @@ const StudentsList = () => {
           <button className="w-7 h-7 flex items-center justify-center rounded-full bg-sky">
             <Image src="/view.png" width={16} height={16} alt="viewprofile" />
           </button>
-          {role==='admin' && <button className="w-7 h-7 flex items-center justify-center rounded-full bg-purple-400">
-            <Image src="/delete.png" width={16} height={16} alt="viewprofile" />
-          </button>}
+          {role === 'admin' && (
+            <button className="w-7 h-7 flex items-center justify-center rounded-full bg-purple-400">
+              <Image src="/delete.png" width={16} height={16} alt="viewprofile" />
+            </button>
+          )}
         </div>
       </td>
-    </tr>);
-  
+    </tr>
+  );
 
   return (
     <div className="bg-white p-4 rounded-xl flex-1 m-4 mt-0">
@@ -106,15 +100,17 @@ const StudentsList = () => {
               <Image src="/sort.png" width={14} height={14} alt="sortbutton" />
             </button>
 
-            <button className="w-8 h-8 flex items-center rounded-full bg-low justify-center">
-              <Image src="/plus.png" width={14} height={14} alt="addbutton" />
-            </button>
+            {role === 'admin' && (
+              <button className="w-8 h-8 flex items-center rounded-full bg-low justify-center">
+                <Image src="/plus.png" width={14} height={14} alt="addbutton" />
+              </button>
+            )}
           </div>
         </div>
       </div>
 
       {/* Table*/}
-      <Table columns={columns} renderRow={renderRow} data={studentsData}/>
+      <Table columns={columns} renderRow={renderRow} data={studentsData} />
 
       <Pagination />
     </div>

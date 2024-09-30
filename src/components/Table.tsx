@@ -1,11 +1,13 @@
 import React from 'react';
 import { TeacherType } from '@/types/types';
+
 const Table = ({
   columns, renderRow, data
 }: {
   columns: { header: string; accessor: string; className?: string }[];
-  renderRow: (item: TeacherType) => React.ReactNode;
+  renderRow: (item: any) => React.ReactNode; //item:teacheType, studentType ... etc.
   data: any[];
+  
 }) => {
   return (
     <table className="w-full mt-4">
