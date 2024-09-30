@@ -5,6 +5,7 @@ import Pagination from '@/components/Pagination';
 import Table from '@/components/Table';
 import Link from 'next/link';
 import { role, announcementsData } from '@/lib/data';
+import FormModal from '@/components/FormModal';
 
 type Announcement = {
   id: number;
@@ -60,9 +61,10 @@ const AnnouncemetsList = () => {
             <Image src="/edit.png" width={16} height={16} alt="editlesson" />
           </button>
           {role === 'admin' && (
-            <button className="w-7 h-7 flex items-center justify-center rounded-full bg-purple-400">
-              <Image src="/delete.png" width={16} height={16} alt="viewprofile" />
-            </button>
+            <>
+            <FormModal table="announcement" type="update" data={item} />
+            <FormModal table="announcement" type="delete" id={item.id} />
+          </>
           )}
         </div>
       </td>
@@ -87,9 +89,7 @@ const AnnouncemetsList = () => {
             </button>
 
             {role === 'admin' && (
-              <button className="w-8 h-8 flex items-center rounded-full bg-low justify-center">
-                <Image src="/plus.png" width={14} height={14} alt="addbutton" />
-              </button>
+              <FormModal table="announcement" type="create" />
             )}
           </div>
         </div>

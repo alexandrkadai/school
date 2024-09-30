@@ -5,6 +5,7 @@ import Pagination from '@/components/Pagination';
 import Table from '@/components/Table';
 import Link from 'next/link';
 import { role, subjectsData } from '@/lib/data';
+import FormModal from '@/components/FormModal';
 
 type Subject = {
   id: number;
@@ -48,12 +49,11 @@ const SubjectsList = () => {
         /> */}
         <div className="flex flex-col ">
           <h3 className="font-semibold text-gray-500 ">{item.id}</h3>
-          
         </div>
       </td>
       <td className="hidden md:table-cell ">{item.name}</td>
       <td className="hidden md:table-cell ">{item.teachers.join(', ')}</td>
-     
+
       <td>
         <div className="flex items-center gap-2">
           <Link href={`/ist/teachers/${item.id}`} />
@@ -61,9 +61,10 @@ const SubjectsList = () => {
             <Image src="/edit.png" width={16} height={16} alt="edit subject" />
           </button>
           {role === 'admin' && (
-            <button className="w-7 h-7 flex items-center justify-center rounded-full bg-purple-400">
-              <Image src="/delete.png" width={16} height={16} alt="viewprofile" />
-            </button>
+            <>
+              <FormModal table="subject" type="update" data={item} />
+              <FormModal table="subject" type="delete" id={item.id} />
+            </>
           )}
         </div>
       </td>
@@ -87,11 +88,7 @@ const SubjectsList = () => {
               <Image src="/sort.png" width={14} height={14} alt="sortbutton" />
             </button>
 
-            {role === 'admin' && (
-              <button className="w-8 h-8 flex items-center rounded-full bg-low justify-center">
-                <Image src="/plus.png" width={14} height={14} alt="addbutton" />
-              </button>
-            )}
+            {role === 'admin' && <FormModal table="teacher" type="create" />}
           </div>
         </div>
       </div>

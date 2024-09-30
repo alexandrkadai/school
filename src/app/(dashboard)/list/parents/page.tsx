@@ -5,6 +5,7 @@ import Pagination from '@/components/Pagination';
 import Table from '@/components/Table';
 import Link from 'next/link';
 import { role, parentsData } from '@/lib/data';
+import FormModal from '@/components/FormModal';
 
 type Parent = {
   id: number;
@@ -74,9 +75,11 @@ const ParentsList = () => {
             <Image src="/view.png" width={16} height={16} alt="viewprofile" />
           </button>
           {role === 'admin' && (
-            <button className="w-7 h-7 flex items-center justify-center rounded-full bg-purple-400">
-              <Image src="/delete.png" width={16} height={16} alt="viewprofile" />
-            </button>
+            <>
+            <FormModal table="parent" type="update" id={item.id}/>
+            <FormModal table="parent" type="delete" id={item.id}/>
+            </>
+             
           )}
         </div>
       </td>
@@ -101,9 +104,7 @@ const ParentsList = () => {
             </button>
 
             {role === 'admin' && (
-              <button className="w-8 h-8 flex items-center rounded-full bg-low justify-center">
-                <Image src="/plus.png" width={14} height={14} alt="addbutton" />
-              </button>
+               <FormModal table="parent" type="create" />
             )}
           </div>
         </div>

@@ -5,6 +5,7 @@ import Pagination from '@/components/Pagination';
 import Table from '@/components/Table';
 import Link from 'next/link';
 import { role, lessonsData } from '@/lib/data';
+import FormModal from '@/components/FormModal';
 
 
 type Lesson = {
@@ -63,10 +64,11 @@ const LessonsList = () => {
           <button className="w-7 h-7 flex items-center justify-center rounded-full bg-sky">
             <Image src="/edit.png" width={16} height={16} alt="editlesson" />
           </button>
-          {role === 'admin' && (
-            <button className="w-7 h-7 flex items-center justify-center rounded-full bg-purple-400">
-              <Image src="/delete.png" width={16} height={16} alt="viewprofile" />
-            </button>
+          {role === "admin" && (
+            <>
+              <FormModal table="lesson" type="update" data={item} />
+              <FormModal table="lesson" type="delete" id={item.id} />
+            </>
           )}
         </div>
       </td>
@@ -90,11 +92,7 @@ const LessonsList = () => {
               <Image src="/sort.png" width={14} height={14} alt="sortbutton" />
             </button>
 
-            {role === 'admin' && (
-              <button className="w-8 h-8 flex items-center rounded-full bg-low justify-center">
-                <Image src="/plus.png" width={14} height={14} alt="addbutton" />
-              </button>
-            )}
+            {role === "admin" && <FormModal table="lesson" type="create" />}
           </div>
         </div>
       </div>

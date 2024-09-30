@@ -5,6 +5,7 @@ import Pagination from '@/components/Pagination';
 import Table from '@/components/Table';
 import Link from 'next/link';
 import { role, teachersData } from '@/lib/data';
+import FormModal from '@/components/FormModal';
 
 type Teacher = {
   id: number;
@@ -56,8 +57,10 @@ const columns = [
 
 const TeachersList = () => {
   const renderRow = (item: Teacher) => (
-    <tr key={item.id} className='border-b border-gray-200 even:bg-blue-100 text-sm hover:bg-purple-100'>
-      <td className='flex items-center gap-4 p-4'>
+    <tr
+      key={item.id}
+      className="border-b border-gray-200 even:bg-blue-100 text-sm hover:bg-purple-100">
+      <td className="flex items-center gap-4 p-4">
         <Image
           src={item.photo}
           width={40}
@@ -81,13 +84,11 @@ const TeachersList = () => {
           <button className="w-7 h-7 flex items-center justify-center rounded-full bg-sky">
             <Image src="/view.png" width={16} height={16} alt="viewprofile" />
           </button>
-          {role==='admin' && <button className="w-7 h-7 flex items-center justify-center rounded-full bg-purple-400">
-            <Image src="/delete.png" width={16} height={16} alt="viewprofile" />
-          </button>}
+          {role === 'admin' && <FormModal table="teacher" type="delete" id={item.id}/>}
         </div>
       </td>
-    </tr>);
-  
+    </tr>
+  );
 
   return (
     <div className="bg-white p-4 rounded-xl flex-1 m-4 mt-0">
@@ -106,11 +107,7 @@ const TeachersList = () => {
               <Image src="/sort.png" width={14} height={14} alt="sortbutton" />
             </button>
 
-            {role === 'admin' && (
-              <button className="w-8 h-8 flex items-center rounded-full bg-low justify-center">
-                <Image src="/plus.png" width={14} height={14} alt="addbutton" />
-              </button>
-            )}
+            {role === 'admin' && <FormModal table="teacher" type="create" />}
           </div>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 const Navbar = () => {
@@ -16,7 +17,9 @@ const Navbar = () => {
       <div className='absolute -top-3 -right-3 w-5 h-5 flex items-center justify-center bg-purple-500 text-white rounded-full text-xs'>77</div>
     </div>
     <div className='flex flex-col'>
+      <Link href="/admin/">
       <span className='text-xs leadnig-3 font-medium'>Alex Chinotto</span>
+      </Link>
       <span className='text-[10px] text-gray-500 text-right'>Admin</span>
     </div>
     <Image src='/avatar.png' alt="avatar" width={36} height={36} className='rounded-full'/>
