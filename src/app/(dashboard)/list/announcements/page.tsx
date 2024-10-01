@@ -41,13 +41,6 @@ const AnnouncemetsList = () => {
       key={item.id}
       className="border-b border-gray-200 even:bg-blue-100 text-sm hover:bg-purple-100">
       <td className="flex items-center gap-4 p-4">
-        {/* <Image
-          src={item.photo}
-          width={40}
-          height={40}
-          alt="Teacher Photo"
-          className="md:hidden xl:block w-10 h-10 rounded-full object-cover"
-        /> */}
         <div className="flex flex-col ">
           <h3 className="font-semibold text-gray-500 ">{item.title}</h3>
         </div>
@@ -56,10 +49,6 @@ const AnnouncemetsList = () => {
       <td className="hidden md:table-cell ">{item.date}</td>
       <td>
         <div className="flex items-center gap-2">
-          <Link href={`/ist/teachers/${item.id}`} />
-          <button className="w-7 h-7 flex items-center justify-center rounded-full bg-sky">
-            <Image src="/edit.png" width={16} height={16} alt="editlesson" />
-          </button>
           {role === 'admin' && (
             <>
             <FormModal table="announcement" type="update" data={item} />
