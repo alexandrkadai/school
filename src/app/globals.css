@@ -5,6 +5,7 @@
 .react-calendar {
   width: 100% !important;
   border: none !important;
+  min-height: 500px !important;
   font-family: "Inter", sans-serif !important;
 }
 
