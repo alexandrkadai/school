@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import { RadialBarChart, RadialBar, Legend, ResponsiveContainer } from 'recharts';
+import { RadialBarChart, RadialBar, ResponsiveContainer } from 'recharts';
 
 const data = [
     {
@@ -25,13 +25,6 @@ const data = [
   },
   
 ];
-
-const style = {
-  top: '50%',
-  right: 0,
-  transform: 'translate(0, -50%)',
-  lineHeight: '24px',
-};
 
 const CircleChart = () => {
   return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import { TeacherType } from '@/types/types';
+// import { TeacherType } from '@/types/types';
 
 const Table = ({
   columns, renderRow, data
