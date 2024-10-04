@@ -100,7 +100,7 @@ const StudentsList = () => {
             </button>
 
             {role === 'admin' && (
-             <FormModal table="teacher" type="create" />
+             <FormModal table="student" type="create" />
             )}
           </div>
         </div>

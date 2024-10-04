@@ -1,8 +1,25 @@
 'use client';
 
 import Image from 'next/image';
+import dynamic from "next/dynamic";
 import React, { useState } from 'react';
-import TeacherForm from './forms/TeacherForm';
+// import TeacherForm from './forms/TeacherForm';
+// import StudentsForm from './forms/StudentsForm';
+
+const TeacherForm = dynamic(() => import("./forms/TeacherForm"), {
+  loading: () => <h1>Loading...</h1>,
+});
+const StudentsForm = dynamic(() => import("./forms/StudentsForm"), {
+  loading: () => <h1>Loading...</h1>,
+});   
+
+
+const forms: {
+  [key: string]: (type: "create" | "update", data?: any) => JSX.Element;
+} = {
+  teacher: (type, data) => <TeacherForm type={type} data={data} />,
+  student: (type, data) => <StudentsForm type={type} data={data} />
+};
 
 const FormModal = ({
   table,
@@ -38,8 +55,10 @@ const FormModal = ({
         <span className='text-center font-medium'>Are You Sure U Want To Delete Item {table} ? </span>
         <button className=' w-max self-center bg-red-700 text-white rounded-md p-2  border-none'>Delete</button>
       </form>
+    ) : type === "create" || type === "update" ? (
+      forms[table](type, data)
     ) : (
-     <TeacherForm type='create'/>
+      "Form not found!"
     );
   };
   return (
@@ -53,8 +72,6 @@ const FormModal = ({
         <div className="w-screen h-screen absolute left-0 top-0 bg-black bg-opacity-60 z-50 flex items-center justify-center">
           <div className="bg-white p-4 rounded-xl relative w-[90%] md:w-[70%] lg:w-[60%] xl:w-[50%] 2xl:w-[40%]">
             <Form />
-            <span>{data}</span>
-            
             <div className="absolute cursor-pointer top-4 right-4" onClick={() => setOpen(false)}>
               <Image src="/close.png" alt="close icon" width={14} height={14} className="" />
             </div>
