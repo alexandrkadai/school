@@ -1,5 +1,5 @@
-'use client';
-import Image from 'next/image';
+"use client";
+import Image from "next/image";
 import {
   LineChart,
   Line,
@@ -9,77 +9,77 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-} from 'recharts';
+} from "recharts";
 
 const data = [
   {
-    name: 'Jan',
+    name: "Jan",
     expenses: 4000,
     income: 2400,
     benfits: 2400,
   },
   {
-    name: 'Feb',
+    name: "Feb",
     expenses: 3000,
     income: 1398,
     benfits: 2210,
   },
   {
-    name: 'Mar',
+    name: "Mar",
     expenses: 2000,
     income: 9800,
     benfits: 2290,
   },
   {
-    name: 'Apr',
+    name: "Apr",
     expenses: 2780,
     income: 3908,
     benfits: 2000,
   },
   {
-    name: 'May',
+    name: "May",
     expenses: 1890,
     income: 4800,
     benfits: 2181,
   },
   {
-    name: 'Jun',
+    name: "Jun",
     expenses: 2390,
     income: 3800,
     benfits: 2500,
   },
   {
-    name: 'Jul',
+    name: "Jul",
     expenses: 3490,
     income: 4300,
     benfits: 2100,
   },
   {
-    name: 'Aug',
+    name: "Aug",
     expenses: 3490,
     income: 4300,
     benfits: 2100,
   },
   {
-    name: 'Sep',
+    name: "Sep",
     expenses: 3490,
     income: 4300,
     benfits: 2100,
   },
   {
-    name: 'Oct',
+    name: "Oct",
     expenses: 3490,
     income: 4300,
     benfits: 2100,
   },
   {
-    name: 'Nov',
+    name: "Nov",
     expenses: 2000,
     income: 9800,
     benfits: 2290,
   },
   {
-    name: 'Dec',
+    name: "Dec",
     expenses: 3000,
     income: 1398,
     benfits: 2210,
@@ -88,9 +88,9 @@ const data = [
 
 const FinanceChart = () => {
   return (
-    <div className="w-full h-[450px] bg-white rounded-xl  py-4 px-4">
-      <div className="flex justify-between items-center pb-3">
-        <h2 className="font-semibold text-lg">Finance</h2>
+    <div className="h-[450px] w-full rounded-xl bg-white px-4 py-4">
+      <div className="flex items-center justify-between pb-3">
+        <h2 className="text-lg font-semibold">Finance</h2>
         <Image
           src="/moreDark.png"
           width={20}
@@ -109,9 +109,15 @@ const FinanceChart = () => {
             right: 30,
             left: 20,
             bottom: 5,
-          }}>
+          }}
+        >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" axisLine={false} tickLine={false} tickMargin={10} />
+          <XAxis
+            dataKey="name"
+            axisLine={false}
+            tickLine={false}
+            tickMargin={10}
+          />
           <YAxis axisLine={false} tickLine={false} tickMargin={10} />
           <Tooltip />
           <Legend />

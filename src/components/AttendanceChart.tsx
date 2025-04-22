@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
+import Image from "next/image";
 import {
   BarChart,
   Bar,
@@ -11,31 +11,31 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-} from 'recharts';
+} from "recharts";
 
 const data = [
   {
-    name: 'Mon',
+    name: "Mon",
     present: 70,
     absent: 30,
   },
   {
-    name: 'Tue',
+    name: "Tue",
     present: 90,
     absent: 10,
   },
   {
-    name: 'Wed',
+    name: "Wed",
     present: 95,
     absent: 5,
   },
   {
-    name: 'Thu',
+    name: "Thu",
     present: 99,
     absent: 1,
   },
   {
-    name: 'Fri',
+    name: "Fri",
     present: 100,
     absent: 0,
   },
@@ -43,18 +43,18 @@ const data = [
 
 const AttendanceChart = () => {
   return (
-    <div className="w-full h-[450px] bg-white rounded-xl  py-4 px-4">
-      <div className="flex justify-between items-center pb-3">
-        <h2 className="font-semibold text-lg">Attendance</h2>
+    <div className="h-[450px] w-full rounded-xl bg-white px-4 py-4">
+      <div className="flex items-center justify-between pb-3">
+        <h2 className="text-lg font-semibold">Attendance</h2>
         <Image src="/moreDark.png" width={20} height={20} alt="breadcrumbs" />
       </div>
 
       <ResponsiveContainer width="100%" height="90%">
-        <BarChart width={500} height={300} data={data} barSize={20} >
+        <BarChart width={500} height={300} data={data} barSize={20}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" axisLine={false} tickLine={false}/>
-          <YAxis axisLine={false} tickLine={false}/>
-          <Tooltip cursor={{ fill:'lightblue' }}/>
+          <XAxis dataKey="name" axisLine={false} tickLine={false} />
+          <YAxis axisLine={false} tickLine={false} />
+          <Tooltip cursor={{ fill: "lightblue" }} />
           <Legend />
           <Bar
             legendType="circle"
